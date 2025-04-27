@@ -13,25 +13,22 @@ function ShowBook() {
     useEffect(() => {
         setLoading(true)
 
-        const timer = setTimeout(() => {
-            axios.get(`${import.meta.env.VITE_API_URL}/books/${id}`)
-                .then((res) => {
-                    setBook(res.data)
-                    setLoading(false)
-                }).catch((error) => {
-                    console.log(error);
-                    setLoading(false)
-                    alert('An error happened. Please chack console!')
-                })
-        }, 700)
+        axios.get(`${import.meta.env.VITE_API_URL}/books/${id}`)
+            .then((res) => {
+                setBook(res.data)
+                setLoading(false)
+            }).catch((error) => {
+                console.log(error);
+                setLoading(false)
+                alert('An error happened. Please chack console!')
+            })
 
-        return () => clearTimeout(timer);
     }, [])
 
 
     return (
         <div className='flex flex-col justify-center items-center'>
-            <h1 className='text-3xl my-4 mt-20 border-2 border-sky-400 rounded-xl px-5 py-1'>Show Book</h1>
+            <h1 className='text-3xl my-4 mt-20 border-2 border-sky-400 rounded-xl px-5 py-1 bg-red-300'>Show Book</h1>
             {loading ? (<MoonLoader className='mt-20' size={70} />) : (
                 <div className='flex flex-col border-2 border-sky-400 rounded-xl w-fit p-10'>
                     <div className='my-4'>
